@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Criar conta{% endblock %}
+
+
+{% block script %}
+<script src="{% static 'js/script.js' %}"></script>
+
+<!--Jquery-->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="d-flex justify-content-center h-100 py-3">
+    <div class="card">
+      <div class="card-header">
+        <h3>Crie uma conta</h3>
+        <p>Cadastre-se usando o formulário abaixo:</p>
+      </div>
+      <div class="card-body">
+        <div class="login-form">
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ user_form.non_field_errors }}
+            {{ profile_form.non_field_errors }}
+            <div class="form-group">
+              {{ user_form.username.label }}
+              <div class="text-danger" role="alert">
+                {{ user_form.username.errors }}
+              </div>
+              {{ user_form.username }}
+              <small id="id_username" class="form-text text-muted">
+              </small>
+            </div>
+            <div class="form-group mt-3">
+              {{ user_form.email.label }}
+              <div class="text-danger" role="alert">
+                {{ user_form.email.errors }}
+              </div>
+              {{ user_form.email }}
+              <small id="id_email" class="form-text text-muted">
+              </small>
+            </div>
+            <div class="form-group mt-3">
+              {{ profile_form.full_name.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.full_name.errors }}
+              </div>
+              {{ profile_form.full_name }}
+            </div>
+            <div class="form-group mt-3">
+              {{ profile_form.cpf.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.cpf.errors }}
+              </div>
+              {{ profile_form.cpf }}
+            </div>
+            <div class="form-group mt-3">
+              {{ profile_form.identidade.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.identidade.errors }}
+              </div>
+              {{ profile_form.identidade }}
+            </div>
+            <div class="form-group mt-3">
+              {{ profile_form.address.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.address.errors }}
+              </div>
+              {{ profile_form.address }}
+            </div>
+
+            <div class="form-group mt-3">
+              {{ profile_form.city.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.city.errors }}
+              </div>
+              {{ profile_form.city }}
+            </div>
+            <div class="form-group mt-3">
+              {{ profile_form.state.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.state.errors }}
+              </div>
+              {{ profile_form.state }}
+            </div>
+            <div class="form-group mt-3">
+              {{ profile_form.cep.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.cep.errors }}
+              </div>
+              {{ profile_form.cep }}
+            </div>
+            <div class="form-group mt-3">
+              {{ profile_form.phone.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.phone.errors }}
+              </div>
+              {{ profile_form.phone }}
+              <small id="id_phone" class="form-text text-muted">
+                Celular whatsapp
+              </small>
+            </div>
+            <div class="form-group mt-3">
+              {{ profile_form.bank.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.bank.errors }}
+              </div>
+              {{ profile_form.bank }}
+            </div>
+            <div class="form-group mt-3">
+              {{ profile_form.agency.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.agency.errors }}
+              </div>
+              {{ profile_form.agency }}
+            </div>
+            <div class="form-group mt-3">
+              {{ profile_form.account.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.account.errors }}
+              </div>
+              {{ profile_form.account }}
+              <small id="id_account" class="form-text text-muted">
+                Caso seja poupança, colocar a opção antes do número da conta e <br>separado com espaço.</small>
+            </div>
+
+
+
+            <div class="form-group mt-3">
+              {{ profile_form.pis.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.pis.errors }}
+              </div>
+              {{ profile_form.pis }}
+            </div>
+
+            <div class="form-group mt-3">
+              {{ profile_form.comprovante_residencia.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.comprovante_residencia.errors }}
+              </div>
+              {{ profile_form.comprovante_residencia }}
+            </div>
+
+            <div class="form-group mt-3">
+              {{ profile_form.identidade_doc.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.identidade_doc.errors }}
+              </div>
+              {{ profile_form.identidade_doc }}
+            </div>
+
+
+            <div class="form-group mt-3">
+              {{ user_form.password.label }}
+              <div class="text-danger" role="alert">
+                {{ user_form.password.errors }}
+              </div>
+              {{ user_form.password }}
+            </div>
+            <div class="form-group mt-3">
+              {{ user_form.password2.label }}
+              <div class="text-danger" role="alert">
+                {{ user_form.password2.errors }}
+              </div>
+              {{ user_form.password2 }}
+            </div>
+            <div class="form-group mt-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                <label class="form-check-label" for="invalidCheck">
+                  Eu concordo com os termos e condições.
+                </label>
+                <div class="invalid-feedback">
+                  Você precisa concordar com os termos para acontinuar.
+                </div>
+              </div>
+            </div>
+            <div id="terms" hidden class="alert alert-danger mt-3" role="alert">
+              Você precisa concorda com os termos e condições.
+            </div>
+            <p class="my-3"><input id="createAccount" class="btn btn-success" type="submit" value="Criar minha conta"></p>
+          </form>
+
+          <!-- Button trigger modal -->
+          <button hidden id="exampleModalID" type="button" class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Aceite os termos
+          </button>
+
+          {% include 'components/accept-terms.html' %}
+
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block bodyScript %}
+<script>
+
+  const checkbox = document.getElementById("invalidCheck")
+
+  const showTerms = (event) => {
+      if (checkbox.checked === true) {
+          event.preventDefault()
+          document.querySelector('#exampleModalID').click()
+      }
+  }
+
+  const closeModal = () => {
+        document.querySelector('#closeModal').click()
+        document.querySelector('#closeModal').click()
+    }
+
+   const acceptTerms = () => {
+        checkbox.checked = true
+        closeModal();
+    }
+
+  checkbox.addEventListener("click", showTerms);
+
+  document.getElementById("btnAccept").addEventListener("click", acceptTerms);
+
+  document.getElementById("createAccount").addEventListener("click", createAccount);
+
+  // max size upload file
+  $("form").submit(function() {
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+      var file = $('#id_comprovante_residencia')[0].files[0];
+      if (file && file.size > 1024 * 1024 ) {
+        alert("O arquivo " + file.name + " é muito grande. (Máx. 1 MB)");
+        return false;
+      }
+      var file = $('#id_identidade_doc')[0].files[0];
+      if (file && file.size > 1024 * 1024 ) {
+        alert("O arquivo " + file.name + " é muito grande. (Máx. 1 MB)");
+        return false;
+      }
+    }
+  })
+
+</script>
+{% endblock %}

@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block title %}Edite sua conta{% endblock %}
+
+{% block script %}
+<!--Jquery-->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center h-100 py-3">
+    <div class="card">
+      <div class="card-header">
+        <h3>Altere seus dados</h3>
+        <p>Você pode alterar seus dados, usando o formulário abaixo:</p>
+      </div>
+      <div class="card-body">
+        <div class="login-form">
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ user_form.non_field_errors }}
+            {{ profile_form.non_field_errors }}
+            <div class="form-group mt-3">
+              {{ user_form.email.label }}
+              <div class="text-danger" role="alert">
+                {{ user_form.email.errors }}
+              </div>
+              {{ user_form.email }}
+            </div>
+            <div class="form-group mt-3">
+              {{ profile_form.full_name.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.full_name.errors }}
+              </div>
+              {{ profile_form.full_name }}
+            </div>
+            <div class="form-group mt-3">
+              {{ profile_form.cpf.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.cpf.errors }}
+              </div>
+              {{ profile_form.cpf }}
+            </div>
+            <div class="form-group mt-3">
+              {{ profile_form.identidade.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.identidade.errors }}
+              </div>
+              {{ profile_form.identidade }}
+            </div>
+            <div class="form-group mt-3">
+              {{ profile_form.address.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.address.errors }}
+              </div>
+              {{ profile_form.address }}
+            </div>
+            <div class="form-group mt-3">
+              {{ profile_form.city.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.city.errors }}
+              </div>
+              {{ profile_form.city }}
+            </div>
+            <div class="form-group mt-3">
+              {{ profile_form.state.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.state.errors }}
+              </div>
+              {{ profile_form.state }}
+            </div>
+            <div class="form-group mt-3">
+              {{ profile_form.cep.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.cep.errors }}
+              </div>
+              {{ profile_form.cep }}
+            </div>
+            <div class="form-group mt-3">
+              {{ profile_form.phone.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.phone.errors }}
+              </div>
+              {{ profile_form.phone }}
+            </div>
+            <div class="form-group mt-3">
+              {{ profile_form.bank.label }}
+              <div class="text-danger" role="alert">
+                {{ profile_form.bank.errors }}
+              </div>
+              {{ profile_form.bank }}
+            </div><div class="form-group mt-3">
+              {{ profile_form.agency.label }}
+            <div class="text-danger" role="alert">
+                {{ profile_form.agency.errors }}
+              </div>
+              {{ profile_form.agency }}
+            </div>
+            <div class="form-group mt-3">
+              {{ profile_form.account.label }}
+            <div class="text-danger" role="alert">
+                {{ profile_form.account.errors }}
+              </div>
+              {{ profile_form.account }}
+            </div>
+
+            <div class="form-group mt-3">
+              {{ profile_form.pis.label }}
+            <div class="text-danger" role="alert">
+                {{ profile_form.pis.errors }}
+              </div>
+              {{ profile_form.pis }}
+            </div>
+
+            <div class="form-group mt-3">
+              {{ profile_form.comprovante_residencia.label }}
+            <div class="text-danger" role="alert">
+                {{ profile_form.comprovante_residencia.errors }}
+              </div>
+              {{ profile_form.comprovante_residencia }}
+            </div>
+
+            <div class="form-group mt-3">
+              {{ profile_form.identidade_doc.label }}
+            <div class="text-danger" role="alert">
+                {{ profile_form.identidade_doc.errors }}
+              </div>
+              {{ profile_form.identidade_doc }}
+            </div>
+
+
+            <p class="my-3"><input class="btn btn-primary" type="submit" value="Salvar mudanças"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block bodyScript %}
+<script>
+  // max size upload file
+  $("form").submit(function() {
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+      var file = $('#id_comprovante_residencia')[0].files[0];
+      if (file && file.size > 1024 * 1024 ) {
+        alert("O arquivo " + file.name + " é muito grande. (Máx. 1 MB)");
+        return false;
+      };
+      var file = $('#id_identidade_doc')[0].files[0];
+      if (file && file.size > 1024 * 1024 ) {
+        alert("O arquivo " + file.name + " é muito grande. (Máx. 1 MB)");
+        return false;
+      };
+    }
+  })
+</script>
+
+{% endblock %}

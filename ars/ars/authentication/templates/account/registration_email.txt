@@ -1,0 +1,2 @@
+Parabéns, mais uma pessoa se cadastrou no Exported Bets.
+Um usuário chamado {{ new_user.username }} acabou de ser criado.

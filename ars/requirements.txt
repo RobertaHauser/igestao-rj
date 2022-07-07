@@ -1,0 +1,13 @@
+dj-database-url
+dj-static
+Django
+python-decouple
+gunicorn
+psycopg2-binary
+
+django-extensions
+Werkzeug
+pyOpenSSL
+
+# dev
+django-test-without-migrations
