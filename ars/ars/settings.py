@@ -43,7 +43,6 @@ INSTALLED_APPS = [
 
     # third party apps
     'django_extensions',
-    #'rosetta',
 
     # my apps
     'ars.core',
