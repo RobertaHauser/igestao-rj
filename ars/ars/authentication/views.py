@@ -10,5 +10,5 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
 
 
 class EditAccountView(UpdateView):
-    fields = ('name', 'email', 'password')
+    fields = ('name', 'email')
     model = CustomUser
