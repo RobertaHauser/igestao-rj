@@ -1,8 +1,6 @@
 .DS_Store
-.env
 .venv
 .idea/
-../.idea/
 *.sqlite3
 *pyc
 __pycache__

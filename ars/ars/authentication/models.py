@@ -1,7 +1,6 @@
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import PermissionsMixin, UserManager
-from django.contrib.auth.validators import ASCIIUsernameValidator
 from django.contrib.postgres.fields import CIEmailField
 from django.core.mail import send_mail
 from django.db import models
@@ -40,17 +39,6 @@ class CustomUserManager(UserManager):
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-    SELLER = 'seller'
-    RESELLER = 'reseller'
-    ADMINISTRATOR = 'administrator'
-    PROFILE = (
-        (SELLER, 'Vendedor'),
-        (RESELLER, 'Revendedor'),
-        (ADMINISTRATOR, 'Administrador'),
-    )
-
-    username_validator = ASCIIUsernameValidator()
-
     name = models.CharField(_("name"), max_length=150, blank=True)
     email = CIEmailField(
         _("email address"),
@@ -59,8 +47,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
             "unique": _("A user with that email address already exists."),
         },
     )
-
-    profile = models.CharField(_("profile"), max_length=15, choices=PROFILE)
 
     is_staff = models.BooleanField(
         _("staff status"),
